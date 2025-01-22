@@ -1,9 +1,23 @@
-import axios from "../utils/axiosInstance";
+import axios from "axios";
 
-export const register = async (data) => {
-  return axios.post("/register", data);
+const API_URL = "https://law-office.al-mosa.com/api";
+
+// Login Request
+export const login = async (data) => {
+  return axios.post(`${API_URL}/login`, data);
 };
 
-export const login = async (data) => {
-  return axios.post("/login", data);
+// Register Request
+export const register = async (data) => {
+  return axios.post(`${API_URL}/register`, data);
+};
+
+// ForgotPassword Request
+export const forgotPassword = async (data) => {
+  return axios.post(`${API_URL}/forgot-password`, data);
+};
+
+// ResetPassword Request
+export const resetPassword = async (data) => {
+  return axios.post(`${API_URL}/reset-password`, data);
 };

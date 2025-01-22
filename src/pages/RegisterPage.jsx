@@ -161,7 +161,7 @@ function RegisterPage() {
         <div className="text-center mt-4">
           <p>
             لديك حساب؟{" "}
-            <a href="/login" className="text-blue-500 hover:underline">
+            <a href="/" className="text-blue-500 hover:underline">
               تسجيل الدخول
             </a>
           </p>
