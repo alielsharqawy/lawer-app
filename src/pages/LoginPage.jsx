@@ -25,7 +25,7 @@ const LoginPage = () => {
         title: "تم تسجيل الدخول بنجاح",
         text: "مرحبًا بك في التطبيق.",
       });
-      navigate("/dashboard"); // الانتقال إلى صفحة Dashboard
+      navigate("/dashboard"); 
     } catch (error) {
       Swal.fire({
         icon: "error",
