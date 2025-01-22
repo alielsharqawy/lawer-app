@@ -1,42 +1,27 @@
 import React from "react";
-import {
-  FaHome,
-  FaUserFriends,
-  FaBalanceScale,
-  FaCalendarAlt,
-  FaMoneyBillWave,
-  FaFileInvoice,
-  FaImage,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import LogoutButton from "./LogoutButton";
 
-const Sidebar = ({ isOpen, links, onLogout }) => {
+const Sidebar = ({ isOpen, links }) => {
   return (
     <aside
-      className={`fixed top-20 right-0 w-64 h-full bg-white text-blue-900 shadow-lg transform ${
+      className={`fixed pb-10 top-20 right-0 w-70 h-full bg-white shadow-lg transform ${
         isOpen ? "translate-x-0" : "translate-x-full"
-      } transition-transform duration-300 z-50`}
+      } transition-transform duration-300 overflow-y-scroll no-scrollbar`}
     >
-      <ul className="mt-4 space-y-4 px-4">
+      <ul className="space-y-4 px-4 py-6 ">
         {links.map((link, index) => (
           <li key={index}>
             <a
               href={link.path}
-              className="flex items-center text-2xl px-4 py-2 hover:bg-black hover:text-white transition-all rounded-lg"
+              className="flex items-center gap-6 px-4 py-3 text-blue-800 font-medium hover:bg-gray-100 hover:shadow-lg rounded-md"
             >
-              {link.icon && <span className="mr-3">{link.icon}</span>}
-              {link.name}
+              {link.icon}
+              <span>{link.name}</span>
             </a>
           </li>
         ))}
         <li>
-          <button
-            onClick={onLogout}
-            className="flex items-center text-2xl px-4 py-2 w-full hover:bg-black hover:text-white transition-all rounded-lg"
-          >
-            <FaSignOutAlt className="mr-3" />
-            تسجيل الخروج
-          </button>
+          <LogoutButton />
         </li>
       </ul>
     </aside>

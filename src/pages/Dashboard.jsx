@@ -1,8 +1,15 @@
-// src/pages/Dashboard.jsx
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import Card from "../components/Card";
+import { FaHome, FaUserFriends,FaBalanceScale } from "react-icons/fa";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { FaUsersGear } from "react-icons/fa6";
+import { TiUserAdd } from "react-icons/ti";
+import { FaCalendarAlt } from "react-icons/fa";
+import { GiTwoCoins } from "react-icons/gi";
+import { FaFileAlt } from "react-icons/fa";
+import { FaImage } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa6";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,18 +26,21 @@ const Dashboard = () => {
     }
   };
 
-  const cards = [
-    { title: "الجلسات", value: "0" },
-    { title: "القضايا", value: "0" },
-    { title: "العملاء", value: "0" },
-    { title: "المصروفات", value: "0" },
-  ];
-
   const sidebarLinks = [
-    { name: "الرئيسية", path: "/" },
-    { name: "العملاء", path: "/clients" },
-    { name: "القضايا", path: "/cases" },
-    { name: "المصروفات", path: "/expenses" },
+    { name: "الرئيسية", path: "/", icon: <FaHome /> },
+    { name: "العملاء", path: "/clients", icon: <FaUserFriends /> },
+    { name: "العملاء", path: "/clients", icon: <FaUserFriends /> },
+    { name: "أنواع العملاء", path: "/clients", icon: <FaUsersGear /> },
+    { name: "اضافة عميل", path: "/clients", icon: <TiUserAdd /> },
+    { name: "أنواع القضايا", path: "/cases", icon: <FaBalanceScale /> },
+    { name: "اضافة قضية", path: "/clients", icon: <IoAddCircleOutline /> },
+    { name: "الجلسات", path: "/add", icon: <FaCalendarAlt /> },
+    { name: "المدفوعات", path: "/add", icon: <GiTwoCoins /> },
+    { name: "تقارير المدفوعات", path: "/add", icon: <FaFileAlt /> },
+    { name: "الصور والملفات", path: "/add", icon: <FaImage /> },
+    { name: "المصروفات", path: "/add", icon: <FaWallet /> },
+    { name: "إضافة مصروف", path: "/add", icon: <IoAddCircleOutline /> },
+    { name: "إضافة تصنيف مصاريف", path: "/add", icon: <IoAddCircleOutline /> },
   ];
 
   return (
@@ -41,11 +51,7 @@ const Dashboard = () => {
           toggleSidebar={toggleSidebar}
           toggleFullscreen={toggleFullscreen}
         />
-        <main className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {cards.map((card, index) => (
-            <Card key={index} title={card.title} value={card.value} />
-          ))}
-        </main>
+        <main className="p-4">{/* Content here */}</main>
       </div>
     </div>
   );
