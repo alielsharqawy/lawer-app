@@ -1,26 +1,26 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { FaBars, FaExpand, FaGavel } from "react-icons/fa"; // Importing React Icons
+import { FaBars, FaExpand, FaGavel } from "react-icons/fa";
 
 const Navbar = ({ toggleSidebar, toggleFullscreen }) => {
-  const { user } = useContext(UserContext); // Access UserContext
+  const { user } = useContext(UserContext); // Access the logged-in user
 
   return (
-    <nav className="bg-white shadow-lg text-blue-600 flex items-center justify-between p-5">
+    <nav className="bg-white shadow-lg text-primary flex items-center justify-between px-8 py-5 w-full">
       {/* Sidebar Toggle */}
       <button onClick={toggleSidebar} className="text-2xl">
-        <FaBars className="text-3xl" />
+        <FaBars />
       </button>
 
-      {/* Welcome Text */}
-      <h2 className="text-lg font-bold">مرحباً {user.name || "ضيف"}</h2>
+      {/* Welcome Message */}
+      <h2 className="text-lg font-semibold">مرحباً {user?.name || "ضيف"}</h2>
 
-      {/* Fullscreen and Gavel Icon */}
+      {/* Fullscreen Toggle and Gavel Icon */}
       <div className="flex gap-4">
         <button onClick={toggleFullscreen} className="text-2xl">
-          <FaExpand className="text-3xl" />
+          <FaExpand />
         </button>
-        <FaGavel className="text-4xl" />
+        <FaGavel className="text-3xl" />
       </div>
     </nav>
   );

@@ -1,58 +1,65 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { FaHome, FaUserFriends,FaBalanceScale } from "react-icons/fa";
+import HomePage from "./HomePage";
+import {
+  FaHome,
+  FaUserFriends,
+  FaBalanceScale,
+  FaCog,
+  FaCalendarAlt,
+  FaFileAlt,
+  FaImage,
+  FaWallet,
+} from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { FaUsersGear } from "react-icons/fa6";
 import { TiUserAdd } from "react-icons/ti";
-import { FaCalendarAlt } from "react-icons/fa";
 import { GiTwoCoins } from "react-icons/gi";
-import { FaFileAlt } from "react-icons/fa";
-import { FaImage } from "react-icons/fa";
-import { FaWallet } from "react-icons/fa6";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  };
-
   const sidebarLinks = [
     { name: "الرئيسية", path: "/", icon: <FaHome /> },
     { name: "العملاء", path: "/clients", icon: <FaUserFriends /> },
-    { name: "العملاء", path: "/clients", icon: <FaUserFriends /> },
-    { name: "أنواع العملاء", path: "/clients", icon: <FaUsersGear /> },
-    { name: "اضافة عميل", path: "/clients", icon: <TiUserAdd /> },
-    { name: "أنواع القضايا", path: "/cases", icon: <FaBalanceScale /> },
-    { name: "اضافة قضية", path: "/clients", icon: <IoAddCircleOutline /> },
-    { name: "الجلسات", path: "/add", icon: <FaCalendarAlt /> },
-    { name: "المدفوعات", path: "/add", icon: <GiTwoCoins /> },
-    { name: "تقارير المدفوعات", path: "/add", icon: <FaFileAlt /> },
-    { name: "الصور والملفات", path: "/add", icon: <FaImage /> },
-    { name: "المصروفات", path: "/add", icon: <FaWallet /> },
-    { name: "إضافة مصروف", path: "/add", icon: <IoAddCircleOutline /> },
-    { name: "إضافة تصنيف مصاريف", path: "/add", icon: <IoAddCircleOutline /> },
+    { name: "أنواع العملاء", path: "/clients-types", icon: <FaCog /> },
+    { name: "إضافة عميل", path: "/add-client", icon: <TiUserAdd /> },
+    { name: "أنواع القضايا", path: "/case-types", icon: <FaBalanceScale /> },
+    { name: "إضافة قضية", path: "/add-case", icon: <IoAddCircleOutline /> },
+    { name: "الجلسات", path: "/sessions", icon: <FaCalendarAlt /> },
+    { name: "المدفوعات", path: "/payments", icon: <GiTwoCoins /> },
+    { name: "تقارير المدفوعات", path: "/payment-reports", icon: <FaFileAlt /> },
+    { name: "الصور والملفات", path: "/files", icon: <FaImage /> },
+    { name: "المصروفات", path: "/expenses", icon: <FaWallet /> },
+    { name: "إضافة مصروف", path: "/add-expense", icon: <IoAddCircleOutline /> },
+    {
+      name: "إضافة تصنيف مصاريف",
+      path: "/add-expense-category",
+      icon: <IoAddCircleOutline />,
+    },
   ];
 
   return (
-    <div className="flex h-screen">
-      <Sidebar isOpen={isSidebarOpen} links={sidebarLinks} />
-      <div className="flex-1">
+    <div className="flex h-screen overflow-hidden">
+      {/* Main Content */}
+      <div
+        className={`flex-1 transition-all duration-300 ${
+          isSidebarOpen ? "mr-64" : "mr-0"
+        }`}
+      >
         <Navbar
-          toggleSidebar={toggleSidebar}
-          toggleFullscreen={toggleFullscreen}
+          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          toggleFullscreen={() =>
+            document.fullscreenElement
+              ? document.exitFullscreen()
+              : document.documentElement.requestFullscreen()
+          }
         />
-        <main className="p-4">{/* Content here */}</main>
+        <HomePage />
       </div>
+
+      {/* Sidebar */}
+      <Sidebar isOpen={isSidebarOpen} links={sidebarLinks} />
     </div>
   );
 };
