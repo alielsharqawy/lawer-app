@@ -2,9 +2,11 @@ import React from "react";
 
 const ClientsPage = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">العملاء</h1>
-      <p>صفحة إدارة العملاء.</p>
+    <div className="flex items-center justify-center h-screen">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">العملاء</h1>
+        <p>صفحة إدارة العملاء.</p>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { useFullscreen } from "../context/FullscreenContext";
 import { FaBars, FaExpand, FaGavel } from "react-icons/fa";
 
-const Navbar = ({ toggleSidebar, toggleFullscreen }) => {
+const Navbar = ({ toggleSidebar }) => {
   const { user } = useContext(UserContext); // Access the logged-in user
+  const { toggleFullscreen } = useFullscreen(); // Use fullscreen toggle from context
 
   return (
     <nav className="bg-white shadow-lg text-primary flex items-center justify-between px-8 py-5 w-full">
