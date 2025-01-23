@@ -3,12 +3,14 @@ import Swal from "sweetalert2";
 import { resetPassword } from "../api/auth";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const ResetPasswordPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     code: "", // Token received in the email
-    new_password: "",
+    password: "", // Adjusted the field name to match backend expectations
     confirm_password: "",
   });
 
@@ -19,10 +21,10 @@ const ResetPasswordPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, code, new_password, confirm_password } = formData;
+    const { email, code, password, confirm_password } = formData;
 
     // Check if passwords match
-    if (new_password !== confirm_password) {
+    if (password !== confirm_password) {
       Swal.fire({
         icon: "error",
         title: "خطأ",
@@ -36,7 +38,7 @@ const ResetPasswordPage = () => {
       await resetPassword({
         email,
         code, // Ensure the code/token field is sent correctly
-        new_password,
+        password, // Adjusted field name for backend compatibility
       });
 
       // Success message
@@ -46,8 +48,10 @@ const ResetPasswordPage = () => {
         text: "تم إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول.",
       });
 
-      // Optionally redirect the user to the login page
+      // Redirect to the login page
+      navigate("/"); // Redirect to the login page
     } catch (error) {
+      console.error("Reset Password Error:", error.response?.data);
       Swal.fire({
         icon: "error",
         title: "خطأ",
@@ -82,8 +86,8 @@ const ResetPasswordPage = () => {
           />
           <InputField
             label="كلمة المرور الجديدة"
-            name="new_password"
-            value={formData.new_password}
+            name="password" // Updated field name to match backend expectations
+            value={formData.password}
             onChange={handleChange}
             placeholder="أدخل كلمة المرور الجديدة"
             type="password"
