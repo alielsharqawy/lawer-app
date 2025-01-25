@@ -8,7 +8,7 @@ const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-y-auto no-scrollbar">
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} links={links} />
       <div
@@ -26,3 +26,6 @@ const Layout = () => {
 };
 
 export default Layout;
+
+
+

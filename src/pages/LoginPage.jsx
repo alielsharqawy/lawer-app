@@ -21,7 +21,10 @@ const LoginPage = () => {
       const response = await login(formData); // استدعاء API تسجيل الدخول
       const userName = response.data?.name || response.data?.user?.name; // قراءة الاسم من الاستجابة
       if (!userName) throw new Error("اسم المستخدم غير موجود في الاستجابة");
-
+      console.log(response.data.token);
+      const { user, token } = response.data;
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
       setUser({ name: userName }); // تحديث UserContext
       localStorage.setItem("userName", userName); // تخزين الاسم في localStorage
 
