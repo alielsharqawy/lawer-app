@@ -7,6 +7,7 @@ import {
   deleteCustomer,
 } from "../../api/customers";
 import { FaTrash, FaEdit, FaInfoCircle, FaPlus } from "react-icons/fa";
+
 const Customers = () => {
   const [clients, setClients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,12 +50,8 @@ const Customers = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          // استدعاء API لحذف العميل
           await deleteCustomer(id);
-
-          // إزالة العميل من قائمة العملاء في الواجهة الأمامية
           setClients((prev) => prev.filter((client) => client.id !== id));
-
           Swal.fire("تم الحذف!", "تم حذف العميل بنجاح.", "success");
         } catch (error) {
           Swal.fire("خطأ", "فشل في حذف العميل.", "error");
@@ -85,20 +82,15 @@ const Customers = () => {
     });
 
     try {
-      // استدعاء الـ API لتحديث بيانات العميل
       await updateCustomer(selectedClient.id, selectedClient);
-
-      // تحديث بيانات العميل في واجهة المستخدم
       setClients((prev) =>
         prev.map((client) =>
           client.id === selectedClient.id ? selectedClient : client
         )
       );
-
       Swal.fire("تم الحفظ", "تم تعديل بيانات العميل بنجاح", "success");
-      setIsEditModalOpen(false); // إغلاق نافذة التعديل
+      setIsEditModalOpen(false);
     } catch (error) {
-      // عرض رسالة خطأ في حال حدوث مشكلة
       Swal.fire("خطأ", error.message || "فشل في تحديث بيانات العميل.", "error");
     }
   };
@@ -115,24 +107,24 @@ const Customers = () => {
         </h1>
 
         {/* Search Bar */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           <input
             type="text"
             placeholder="Search by name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 rounded-lg p-2 w-full max-w-md"
+            className="border border-gray-300 rounded-lg p-2 w-full sm:max-w-md"
           />
           <Link
             to="/dashboard/add-client"
-            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg flex items-center gap-2"
           >
             اضافة عميل جديد <FaPlus />
           </Link>
         </div>
 
         {/* Clients List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredClients.length > 0 ? (
             filteredClients.map((client) => (
               <div
@@ -148,21 +140,21 @@ const Customers = () => {
                 <p className="text-gray-600 mb-1">
                   <strong>الهاتف :</strong> {client.phone}
                 </p>
-                <div className="flex mt-4 gap-2">
+                <div className="flex flex-wrap gap-2 mt-4">
                   <button
-                    className="px-4 py-2 bg-gray-500 text-white rounded-lg"
+                    className="flex flex-wrap justify-center items-center gap-3 px-4 py-2 bg-gray-500 text-white rounded-lg"
                     onClick={() => handleShowDetails(client)}
                   >
                     تفاصيل <FaInfoCircle />
                   </button>
                   <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                    className="flex flex-wrap justify-center items-center gap-3 px-4 py-2 bg-blue-500 text-white rounded-lg"
                     onClick={() => handleEdit(client)}
                   >
                     تعديل البيانات <FaEdit />
                   </button>
                   <button
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg"
+                    className="flex flex-wrap justify-center items-center gap-3 px-4 py-2 bg-red-500 text-white rounded-lg"
                     onClick={() => handleDelete(client.id)}
                   >
                     حذف العميل <FaTrash />
@@ -440,4 +432,4 @@ const Customers = () => {
   );
 };
 
-export default Customers; 
+export default Customers;
