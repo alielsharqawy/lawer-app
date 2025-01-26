@@ -124,7 +124,7 @@ const Customers = () => {
             className="border border-gray-300 rounded-lg p-2 w-full max-w-md"
           />
           <Link
-            to="/add-customer"
+            to="/dashboard/add-client"
             className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
           >
             اضافة عميل جديد <FaPlus />
