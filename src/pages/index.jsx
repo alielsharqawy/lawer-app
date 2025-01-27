@@ -1,7 +1,8 @@
 export { default as HomePage } from "./HomePage";
-export { default as ClientsPage } from "./Clients/ClientsPage";
-export { default as ClientTypesPage } from "./Clients/ClientTypesPage";
-export { default as AddClientPage } from "./Clients/AddClientPage";
+export { default as ClientsPage } from "./Customers/CustomersPage";
+export { default as ClientTypesPage } from "./Customers/CustomersTypesPage";
+export { default as AddClientPage } from "./Customers/AddCustomerPage";
+export { default as CasesPage } from "./Cases/CasesPage";
 export { default as CaseTypesPage } from "./Cases/CaseTypesPage";
 export { default as AddCasePage } from "./Cases/AddCasePage";
 export { default as SessionsPage } from "./Sessions/SessionsPage";

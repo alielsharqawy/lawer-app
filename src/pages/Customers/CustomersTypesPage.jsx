@@ -46,11 +46,11 @@ const CustomerCategories = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl mb-4">Customer Categories</h2>
+      <h2 className="text-2xl mb-4">أنواع العملاء</h2>
       <div className="mb-4">
         <input
           type="text"
-          placeholder="New Category"
+          placeholder="عميل جديد"
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
           className="border border-gray-300 rounded p-2 w-full"
@@ -59,7 +59,7 @@ const CustomerCategories = () => {
           onClick={handleAddCategory}
           className="bg-green-500 text-white px-4 py-2 rounded mt-2"
         >
-          Add Category
+          إضافة عميل
         </button>
       </div>
       <div>
@@ -73,7 +73,7 @@ const CustomerCategories = () => {
               onClick={() => handleDeleteCategory(category.id)}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
-              Delete
+              حذف
             </button>
           </div>
         ))}

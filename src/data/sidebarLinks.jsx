@@ -1,6 +1,7 @@
 import {
   FaHome,
   FaUserFriends,
+  FaGavel,
   FaBalanceScale,
   FaCog,
   FaCalendarAlt,
@@ -17,6 +18,11 @@ export const links = [
   { name: "العملاء", path: "/dashboard/clients", icon: <FaUserFriends /> },
   { name: "أنواع العملاء", path: "/dashboard/clients-types", icon: <FaCog /> },
   { name: "إضافة عميل", path: "/dashboard/add-client", icon: <TiUserAdd /> },
+  {
+    name: "القضايا",
+    path: "/dashboard/cases",
+    icon: <FaGavel />,
+  },
   {
     name: "أنواع القضايا",
     path: "/dashboard/case-types",

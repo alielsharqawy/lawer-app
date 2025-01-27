@@ -23,7 +23,6 @@ const ResetPasswordPage = () => {
     e.preventDefault();
     const { email, code, password, confirm_password } = formData;
 
-    // Check if passwords match
     if (password !== confirm_password) {
       Swal.fire({
         icon: "error",
@@ -34,22 +33,15 @@ const ResetPasswordPage = () => {
     }
 
     try {
-      // Send the reset password request
-      await resetPassword({
-        email,
-        code, // Ensure the code/token field is sent correctly
-        password, // Adjusted field name for backend compatibility
-      });
+      await resetPassword({ email, code, password });
 
-      // Success message
       Swal.fire({
         icon: "success",
         title: "تم بنجاح",
         text: "تم إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول.",
       });
 
-      // Redirect to the login page
-      navigate("/"); // Redirect to the login page
+      navigate("/"); // Redirect to login
     } catch (error) {
       console.error("Reset Password Error:", error.response?.data);
       Swal.fire({
@@ -86,7 +78,7 @@ const ResetPasswordPage = () => {
           />
           <InputField
             label="كلمة المرور الجديدة"
-            name="password" // Updated field name to match backend expectations
+            name="password"
             value={formData.password}
             onChange={handleChange}
             placeholder="أدخل كلمة المرور الجديدة"

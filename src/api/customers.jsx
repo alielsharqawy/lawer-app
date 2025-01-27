@@ -19,7 +19,6 @@ export const getAllCustomers = async () => {
 
 export const updateCustomer = async (id, customerData) => {
   try {
-    // تحقق من البيانات قبل الإرسال
     if (!id || !customerData) {
       throw new Error("Customer ID and data are required.");
     }

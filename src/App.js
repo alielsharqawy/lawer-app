@@ -21,6 +21,7 @@ import {
   ExpensesPage,
   AddExpensePage,
   AddExpenseCategoryPage,
+  CasesPage,
 } from "./pages"; // تم تحديث الاستيراد
 
 
@@ -42,6 +43,7 @@ function App() {
               <Route path="clients" element={<ClientsPage />} />
               <Route path="clients-types" element={<ClientTypesPage />} />
               <Route path="add-client" element={<AddClientPage />} />
+              <Route path="cases" element={<CasesPage/>} />
               <Route path="case-types" element={<CaseTypesPage />} />
               <Route path="add-case" element={<AddCasePage />} />
               <Route path="sessions" element={<SessionsPage />} />
