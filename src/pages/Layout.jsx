@@ -8,16 +8,18 @@ const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-y-auto no-scrollbar">
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} links={links} />
       <div
-        className={`flex-1 transition-all duration-300 ${
+        className={`flex-1 flex flex-col transition-all duration-300 ${
           isSidebarOpen ? "mr-64" : "mr-0"
         }`}
       >
+        {/* Navbar */}
         <Navbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
-        <div className="p-4">
+        {/* Content Area */}
+        <div className="flex-1 p-4 overflow-y-auto">
           <Outlet />
         </div>
       </div>
@@ -26,6 +28,3 @@ const Layout = () => {
 };
 
 export default Layout;
-
-
-
