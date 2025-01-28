@@ -38,3 +38,4 @@ const CaseCard = ({
 );
 
 export default CaseCard;
+

@@ -104,6 +104,7 @@ export const fetchCaseDetails = (customerId, caseId, navigate) =>
     navigate
   );
 
+
 /**
  * Delete a specific case.
  */

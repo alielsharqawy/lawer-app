@@ -323,7 +323,7 @@ const Customers = () => {
               </div>
 
               {/* أزرار */}
-              <div className="text-center mt-6">
+              <div className="text-center mt-6 flex justify-center gap-3">
                 <button
                   className="px-6 py-2 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 transition mr-2"
                   onClick={handleSaveEdit}

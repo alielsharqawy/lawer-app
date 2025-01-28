@@ -98,12 +98,33 @@ const AddCasePage = () => {
       });
       setSelectedCustomerId("");
     } catch (error) {
-      console.error(error);
-      Swal.fire("خطأ", "حدث خطأ أثناء إضافة القضية.", "error");
+      console.error("Error adding case:", error);
+
+      // تحليل رسالة الخطأ وإظهار السبب في Swal
+      let errorMessage = "حدث خطأ أثناء إضافة القضية.";
+      if (error.response) {
+        // إذا كان السيرفر أعاد رسالة خطأ
+        if (error.response.data && error.response.data.message) {
+          errorMessage = error.response.data.message;
+        } else if (error.response.status === 400) {
+          errorMessage = "يرجى التأكد من ملء جميع الحقول المطلوبة بشكل صحيح.";
+        } else if (error.response.status === 401) {
+          errorMessage = "يرجى تسجيل الدخول مرة أخرى.";
+        } else if (error.response.status === 500) {
+          errorMessage = "خطأ في السيرفر. يرجى المحاولة لاحقاً.";
+        }
+      } else if (error.request) {
+        // إذا كان الخطأ من الطلب نفسه
+        errorMessage =
+          "لا يمكن الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
+      }
+
+      Swal.fire("خطأ", errorMessage, "error");
     } finally {
       setLoading(false);
     }
   };
+
 
   if (loading) return <div>Loading...</div>;
 

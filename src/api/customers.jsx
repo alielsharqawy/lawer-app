@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const API_BASE_URL = "https://law-office.al-mosa.com/api";
-
-// Utility function to retrieve the token
 const getToken = () => localStorage.getItem("token");
 
-// categories page api
+{/* categories page api*/ }
+// get all customers
 export const getAllCustomers = async () => {
   try {
     return axios.get(`${API_BASE_URL}/customers`, {
@@ -17,13 +16,12 @@ export const getAllCustomers = async () => {
   }
 };
 
+//  update customers
 export const updateCustomer = async (id, customerData) => {
   try {
     if (!id || !customerData) {
       throw new Error("Customer ID and data are required.");
     }
-
-    // إرسال الطلب إلى API
     const response = await axios.post(
       `${API_BASE_URL}/update-customer/${id}`,
       customerData,
@@ -31,34 +29,25 @@ export const updateCustomer = async (id, customerData) => {
         headers: { Authorization: `Bearer ${getToken()}` },
       }
     );
-
-    // تحقق من استجابة الـ API
     if (response.status !== 200) {
       throw new Error(response.data?.message || "Failed to update customer.");
     }
-
-    return response.data; // إرجاع البيانات المستلمة
+    return response.data; 
   } catch (error) {
-    // طباعة الخطأ في وحدة التحكم
     console.error("Error updating customer:", error.response || error);
-
-    // إذا كانت رسالة خطأ من الخادم، اعرضها
     if (error.response?.data?.message) {
       throw new Error(error.response.data.message);
     }
-
-    // رسالة عامة إذا لم تتوفر رسالة خطأ محددة
     throw new Error("An error occurred while updating the customer.");
   }
 };
- 
+  
+// delete customer
 export const deleteCustomer = async (id) => {
   try {
     const response = await axios.delete(`${API_BASE_URL}/customer/${id}`, {
       headers: { Authorization: `Bearer ${getToken()}` },
     });
-
-    // تحقق من استجابة الـ API
     if (response.status !== 200) {
       throw new Error(response.data?.message || "Failed to delete customer.");
     }
@@ -96,6 +85,7 @@ export const getAllCategories = async () => {
   }
 };
 
+// add category type
 export const addCategory = async (categoryData) => {
   try {
     return axios.post(`${API_BASE_URL}/category`, categoryData, {
@@ -107,6 +97,7 @@ export const addCategory = async (categoryData) => {
   }
 };
 
+// delete category
 export const deleteCategory = async (id) => {
   try {
     return axios.delete(`${API_BASE_URL}/category/${id}`, {
