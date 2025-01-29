@@ -127,9 +127,7 @@ const CasesPage = () => {
         </div>
       )}
 
-     
-
-      <div className="mt-6 text-center">
+      <div className="m-8 text-center">
         <Link
           to="/dashboard/add-case"
           className="btn btn-primary mx-2 bg-blue-500 p-3 rounded-lg text-white"
@@ -148,7 +146,3 @@ const CasesPage = () => {
 };
 
 export default CasesPage;
-
-
-
-

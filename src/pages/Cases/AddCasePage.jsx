@@ -125,7 +125,6 @@ const AddCasePage = () => {
     }
   };
 
-
   if (loading) return <div>Loading...</div>;
 
   return (

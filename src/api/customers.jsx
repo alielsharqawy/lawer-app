@@ -3,7 +3,9 @@ import axios from "axios";
 const API_BASE_URL = "https://law-office.al-mosa.com/api";
 const getToken = () => localStorage.getItem("token");
 
-{/* categories page api*/ }
+{
+  /* categories page api*/
+}
 // get all customers
 export const getAllCustomers = async () => {
   try {
@@ -32,7 +34,7 @@ export const updateCustomer = async (id, customerData) => {
     if (response.status !== 200) {
       throw new Error(response.data?.message || "Failed to update customer.");
     }
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("Error updating customer:", error.response || error);
     if (error.response?.data?.message) {
@@ -41,7 +43,7 @@ export const updateCustomer = async (id, customerData) => {
     throw new Error("An error occurred while updating the customer.");
   }
 };
-  
+
 // delete customer
 export const deleteCustomer = async (id) => {
   try {
@@ -58,7 +60,6 @@ export const deleteCustomer = async (id) => {
     throw error;
   }
 };
-
 
 // Function to fetch customer categories (add user page)
 export const getCustomerCategories = async (token) => {

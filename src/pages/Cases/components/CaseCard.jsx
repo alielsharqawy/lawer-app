@@ -19,73 +19,107 @@ const CaseCard = ({
   onEdit,
   onExpenses,
   onNewExpense,
-}) => (
-  <div className="bg-gray-50 shadow-xl rounded-lg max-w-md">
-    <h3 className="text-xl font-medium mb-2  bg-blue-500 p-3 text-white rounded-t-lg">
-      {caseData.customer_name}
-    </h3>
-    <table className="w-full text-gray-700 mb-2">
-      <tbody>
-        <tr>
-          <td className="text-gray-600 mb-1 text-bold text-lg">رقم الدعوى :</td>
-          <td className="px-5">{caseData.case_number}</td>
-        </tr>
-        <tr>
-          <td className="text-gray-600 mb-1 text-bold text-lg">فئة الدعوى :</td>
-          <td className="px-5">{caseData.case_category}</td>
-        </tr>
-        <tr>
-          <td className="text-gray-600 mb- text-bold text-lg">الهاتف :</td>
-          <td className="px-5">{caseData.customer_phone}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div className="flex flex-wrap gap-2 mt-4 p-3">
-      {[
-        {
-          action: onDetails,
-          color: "blue",
-          icon: FaInfoCircle,
-          label: "تفاصيل",
-        },
-        { action: onEdit, color: "yellow", icon: FaEdit, label: "تعديل" },
-        { action: onDelete, color: "red", icon: FaTrash, label: "حذف" },
-        { action: onPayment, color: "green", icon: FaMoneyBill, label: "دفع" },
-        {
-          action: onSession,
-          color: "indigo",
-          icon: FaPlusCircle,
-          label: "جلسة",
-        },
-        {
-          action: onAttachment,
-          color: "purple",
-          icon: FaPaperclip,
-          label: "مرفق",
-        },
-        {
-          action: onExpenses,
-          color: "teal",
-          icon: FaFileInvoiceDollar,
-          label: "المصاريف",
-        },
-        {
-          action: onNewExpense,
-          color: "orange",
-          icon: FaPlusCircle,
-          label: "مصاريف جديدة",
-        },
-      ].map((btn, index) => (
-        <button
-          key={index}
-          onClick={btn.action}
-          className={`flex items-center gap-2 bg-${btn.color}-500 text-white px-4 py-2 rounded hover:bg-${btn.color}-600`}
-        >
-          <btn.icon /> {btn.label}
-        </button>
-      ))}
+}) => {
+  const buttons = [
+    {
+      action: onDetails,
+      color: "bg-blue-500",
+      hover: "hover:bg-blue-600",
+      icon: FaInfoCircle,
+      label: "تفاصيل",
+    },
+    {
+      action: onEdit,
+      color: "bg-yellow-500",
+      hover: "hover:bg-yellow-600",
+      icon: FaEdit,
+      label: "تعديل",
+    },
+    {
+      action: onDelete,
+      color: "bg-red-500",
+      hover: "hover:bg-red-600",
+      icon: FaTrash,
+      label: "حذف",
+    },
+    {
+      action: onPayment,
+      color: "bg-green-500",
+      hover: "hover:bg-green-600",
+      icon: FaMoneyBill,
+      label: "دفع",
+    },
+    {
+      action: onSession,
+      color: "bg-indigo-500",
+      hover: "hover:bg-indigo-600",
+      icon: FaPlusCircle,
+      label: "جلسة",
+    },
+    {
+      action: onAttachment,
+      color: "bg-purple-500",
+      hover: "hover:bg-purple-600",
+      icon: FaPaperclip,
+      label: "مرفق",
+    },
+    {
+      action: onExpenses,
+      color: "bg-teal-500",
+      hover: "hover:bg-teal-600",
+      icon: FaFileInvoiceDollar,
+      label: "المصاريف",
+    },
+    {
+      action: onNewExpense,
+      color: "bg-orange-500",
+      hover: "hover:bg-orange-600",
+      icon: FaPlusCircle,
+      label: "مصاريف جديدة",
+    },
+  ];
+
+  return (
+    <div className="bg-gray-50 shadow-lg rounded-lg max-w-md overflow-hidden border border-gray-200">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 text-center font-bold text-lg">
+        {caseData.customer_name}
+      </div>
+
+      {/* Case Details */}
+      <div className="p-4">
+        <table className="w-full text-gray-700">
+          <tbody>
+            <tr>
+              <td className="font-semibold text-gray-600">رقم الدعوى:</td>
+              <td className="px-4">{caseData.case_number}</td>
+            </tr>
+            <tr>
+              <td className="font-semibold text-gray-600">فئة الدعوى:</td>
+              <td className="px-4">{caseData.case_category}</td>
+            </tr>
+            <tr>
+              <td className="font-semibold text-gray-600">الهاتف:</td>
+              <td className="px-4">{caseData.customer_phone}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="grid grid-cols-2 gap-2 p-4 bg-gray-100">
+        {buttons.map((btn, index) => (
+          <button
+            key={index}
+            onClick={btn.action}
+            className={`flex items-center justify-center gap-2 ${btn.color} text-white px-3 py-2 rounded-md transition duration-300 ${btn.hover}`}
+          >
+            <btn.icon className="text-lg" /> {btn.label}
+          </button>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default CaseCard;
