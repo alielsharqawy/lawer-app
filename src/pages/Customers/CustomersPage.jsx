@@ -110,7 +110,7 @@ const Customers = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           <input
             type="text"
-            placeholder="Search by name..."
+            placeholder="ابحث من خلال الاسم..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="border border-gray-300 rounded-lg p-2 w-full sm:max-w-md"
